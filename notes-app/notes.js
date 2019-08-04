@@ -16,10 +16,7 @@ function saveNotes(notes) {
 
 function removeNote(title) {
     const notes = loadNotes()
-    if (target = notes.find(note => {
-        if (note.title === title)
-            return true;
-    })) {
+    if (target = notes.find(note => note.title === title)) {
         notes.splice(notes.indexOf(target), 1)
         saveNotes(notes)
         console.log(chalk.red.inverse("Note removed!"))
