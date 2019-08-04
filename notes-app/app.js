@@ -6,7 +6,6 @@ const yargs = require('yargs');
 yargs.version('1.1.0');
 
 // add, remove, read, list
-
 // Create add command
 yargs.command({
     command: 'add',
