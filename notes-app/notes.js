@@ -21,27 +21,22 @@ function removeNote(title) {
         saveNotes(notes)
         console.log(chalk.red.inverse("Note removed!"))
     } else {
-        console.log("Cannot find " + title + " title in notes")
+        console.log(chalk.red("Cannot find " + title + " title in notes"))
     }
 }
 
-function getNotes() {
-    return 'Your notes...';
-}
-
 function addNote(title, body) {
+
     const notes = loadNotes();
 
-    const duplicateNotes = notes.filter(function (note) {
-        return note.title === title;
-    });
+    const duplicateNotes = notes.find(note => note.title === title);
 
     // for (note of notes) {
     //     if(note.title == title){
     //         console.log('You can\'t have duplicate titles');
     //     }
     // }
-    if (duplicateNotes.length === 0) {
+    if (!duplicateNotes) {
         notes.push({
             title,
             body
@@ -53,8 +48,34 @@ function addNote(title, body) {
     }
 }
 
+function listNotes() {
+    const notes = loadNotes();
+    console.log(chalk.white.inverse("Your notes..."))
+    notes.forEach(note => {
+        console.log(note.title);
+    });
+}
+
+function readNote(title) {
+    const notes = loadNotes();
+    if (target = notes.find(note => note.title === title)) {
+        console.log(chalk.blue.inverse(target.title))
+        console.log(target.body)
+    } else {
+        console.log(chalk.red("Cannot find " + title + " title in notes"))
+    }
+
+}
+
+function getNotes() {
+    return 'Your notes...';
+}
+
+
 module.exports = {
     getNotes,
     addNote,
-    removeNote
-};
+    removeNote,
+    listNotes,
+    readNote
+};  
