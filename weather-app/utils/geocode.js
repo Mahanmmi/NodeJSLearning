@@ -12,11 +12,13 @@ function geocode(address, callbackGetWeather) {
             callbackGetWeather('Cannot find the specified location. Try another search', undefined);
             return;
         }
-
+        
+        const feature = response.body.features[0]
+        
         callbackGetWeather(undefined, {
-            latitude: response.body.features[0].center[0],
-            longitude: response.body.features[0].center[1],
-            location: response.body.features[0].place_name
+            latitude: feature.center[0],
+            longitude: feature.center[1],
+            location: feature.place_name
         });
     });
 }
