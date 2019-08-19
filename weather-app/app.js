@@ -3,7 +3,7 @@ const forecast = require('./utils/forecast');
 
 
 let address = "";
-process.argv.forEach((value, index) => {
+    process.argv.forEach((value, index) => {
     if (index > 1) {
         address += value + " ";
     }
