@@ -13,7 +13,7 @@ function forecast({ latitude, longitude } = {}, callback) {
             return;
         }
         callback(undefined, body.daily.summary + " It is currently " + body.currently.temperature +
-            " degrees out. There is a " + body.currently.precipProbability + "% chance of rain.");
+            " degrees out. There is a " + body.currently.precipProbability + "% chance of rain. " + "Min temp is " + body.daily.data[0].temperatureMin + " and max temp is " + body.daily.data[0].temperatureMax);
     });
 }
 
