@@ -2,7 +2,7 @@
 console.log('Client side javascript file');
 
 function getForecast(location = '!', errP, resP) {
-    fetch('http://localhost:3000/weather?address=' + location).then(response => {
+    fetch('/weather?address=' + location).then(response => {
         response.json().then((forecast) => {
             if (forecast.error) {
                 return errP.textContent = forecast.error;
