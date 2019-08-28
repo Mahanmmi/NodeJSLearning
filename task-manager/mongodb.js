@@ -150,15 +150,30 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         //         console.log(err);
         //     });
 
-        db.collection('tasks').updateMany({}, {
-            $set: {
-                completed: true
-            }
-        }).then(()=>{
-            console.log('Success');
-        }).catch((err)=>{
+        // db.collection('tasks').updateMany({}, {
+        //     $set: {
+        //         completed: true
+        //     }
+        // }).then(()=>{
+        //     console.log('Success');
+        // }).catch((err)=>{
+        //     console.log(err);
+        // })
+    }
+
+    {   //delete (delete)
+
+        // db.collection('users').deleteMany({ age: 2 }).then((res) => {
+        //     console.log('Success in delete');
+        // }).catch((err) => {
+        //     console.log(err);
+        // });
+
+        db.collection('tasks').deleteOne({ description: 'go to class' }).then((res) => {
+            console.log('Success in delete');
+        }).catch((err) => {
             console.log(err);
-        })
+        });
     }
 
 
