@@ -133,6 +133,33 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         // });
     }
 
+    {   //update (update)
+
+        // db.collection('users').updateOne({
+        //     _id: new ObjectID('5d663c8cfde4e7226c204e49')
+        // }, {
+        //         $set: {
+        //             name: 'Sara'
+        //         },
+        //         $inc: {
+        //             age: 1
+        //         }
+        //     }).then((res) => { // if update is succesfully done:
+        //         console.log(res);
+        //     }).catch((err) => { // if it isn't:
+        //         console.log(err);
+        //     });
+
+        db.collection('tasks').updateMany({}, {
+            $set: {
+                completed: true
+            }
+        }).then(()=>{
+            console.log('Success');
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 
 
 });
