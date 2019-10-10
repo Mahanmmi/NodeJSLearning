@@ -8,7 +8,7 @@ const add = (a, b) => {
             reject(new Error('!!!'));
         }
     })
-};
+}
 
 // Bad solution
 // add(1, 2).then((sum) => {
