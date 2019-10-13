@@ -5,10 +5,6 @@ const User = require('../models/user');
 const router = new express.Router();
 
 
-router.get('/test', (req, res) => {
-    res.send('This is from second router');
-});
-
 router.post('/users', async (req, res) => {
     const user = new User(req.body);
     try {
@@ -16,6 +12,15 @@ router.post('/users', async (req, res) => {
         res.status(201).send(user);
     } catch (err) {
         res.status(400).send(err);
+    }
+});
+
+router.post('/users/login', async (req, res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password);
+        res.send(user);
+    } catch (err) {
+        res.status(400).send();
     }
 });
 
@@ -53,12 +58,16 @@ router.patch('/users/:id', async (req, res) => {
     }
 
     try {
-        const _id = req.params.id;
-        const user = await User.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
+        const user = await User.findById(req.params.id);
+        // const user = await User.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
 
         if (!user) {
             return res.status(404).send();
         }
+
+        updates.forEach((update) => user[update] = req.body[update]);
+        await user.save();
+
         res.send(user);
     } catch (err) {
         res.status(400).send(err);
