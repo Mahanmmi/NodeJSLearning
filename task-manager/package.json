@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-    "database": "C://Users/Mahan/mongodb/bin/mongod.exe --dbpath C://Users/Mahan/mongodb-data/"
+    "database": "C://Users/Mahan/mongodb/bin/mongod.exe --dbpath C://Users/Mahan/mongodb-data/",
+    "test": "env-cmd -f ./config/test.env jest -i --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +29,8 @@
   "devDependencies": {
     "env-cmd": "^10.0.1",
     "eslint": "^6.5.1",
-    "nodemon": "^1.19.4"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   }
 }
